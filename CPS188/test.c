@@ -6,6 +6,7 @@ int main() {
     //scanf("%lf", &num);
     //printf("You entered: %lf\n", num);
     int num;
+    printf("Enter an integer: ");
     scanf("%d", &num);
     printf("You entered: %d\n", num);
     getchar();
