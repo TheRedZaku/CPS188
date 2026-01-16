@@ -1,4 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int monkeys(int a) {
+    srand(time(NULL));
+    return a * rand() + a++;
+}
 
 int main(void) {
     //double num;
@@ -13,9 +20,12 @@ int main(void) {
             printf("That's not 67.\n");
         }
     } while (num != 67);
+    // a while loop that repeats until the number 67 is entered
     printf("yay!\n");
+    printf("you have %d monkeys.", monkeys(num));
     getchar();
     printf("Press Enter to exit...");
     getchar();
     return 0;
 }   
+
