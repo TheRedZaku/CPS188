@@ -25,11 +25,12 @@ int main(void) {
 	char gender, fitLvlChar, yn;
 	int rhr, age, thr;
 	double inten; //fitness level as a double
-	int pass = 0, genderCheck = 0, ageCheck = 0, heartRateCheck = 0, fitLvlCheck = 0, ynCheck = 0;
+	int pass = 0, genderCheck = 0, ageCheck = 0, heartRateCheck = 0, fitLvlCheck = 0;
 	
 	do {
 		system("cls");
-		printf(BOLD_TEXT "Training Heart Rate Program\nPress enter to continue..." DEFAULT_COLOUR);
+		printf(BOLD_TEXT "Training Heart Rate Program\nPress enter to continue...\n" DEFAULT_COLOUR);
+		fflush(stdin);
         getchar();
         //checking for acceptable input for gender (must be M/m or F/f)
 		while (genderCheck == 0) {
@@ -100,18 +101,25 @@ int main(void) {
 		printf(BOLD_TEXT "Your training heart rate is %ibpm." DEFAULT_COLOUR, thr);
 		fflush(stdin);
 		getchar();
-		while (ynCheck == 0) {
-			printf(BOLD_TEXT "\nWould you like to calculate another training heart rate? (Y/N): " DEFAULT_COLOUR);
-			scanf(" %c", &yn);
-			yn = tolower(yn);
-			if (yn == 'n') {
-				pass = 1;
-				printf(BOLD_TEXT "Have a good day!" DEFAULT_COLOUR);
-				fflush(stdin);
-				getchar();
-			} 
-			
+	
+		printf(BOLD_TEXT "\nWould you like to calculate another training heart rate? (Y/N): " DEFAULT_COLOUR);
+		scanf(" %c", &yn);
+		system("cls");
+		yn = tolower(yn);
+		if (yn == 'n') {
+			pass = 1;
+			printf(BOLD_TEXT "Have a good day!" DEFAULT_COLOUR);
+			fflush(stdin);
+			getchar();
+		} else {
+			genderCheck = 0;
+			ageCheck = 0;
+			heartRateCheck = 0;
+			fitLvlCheck = 0;
+			fflush(stdin);
 		}
+		
+		
 
 	} while (pass == 0);
 	return 0;
