@@ -9,6 +9,7 @@
 #define DEFAULT_COLOUR "\033[0m"
 #define BOLD_TEXT "\033[1m"
 
+//function for finding the training heart rate, based on the equation in the document
 int trainingHeartRate(char gender, int age, int rhr, double inten) {
 	double mhr, thr;
 	if (gender == tolower('M')) {
@@ -63,12 +64,12 @@ int main(void) {
 
 		while (heartRateCheck == 0) {
 			system("cls");
-			printf(BOLD_TEXT "What is your resting heart rate: " DEFAULT_COLOUR);
+			printf(BOLD_TEXT "What is your resting heart rate (25 - 200) in bpm: " DEFAULT_COLOUR);
 			scanf(" %i", &rhr);
 			if (rhr >= 25 && rhr <= 200) {
 				heartRateCheck = 1;
 			} else {
-				printf(BOLD_SLOW_BLINK_RED_COLOUR "Invalid Input. Your heartrate is unreasonable. Enter a key to continue...\n" DEFAULT_COLOUR);
+				printf(BOLD_SLOW_BLINK_RED_COLOUR "Invalid Input. Your heartrate is not a reasonable value. Enter a key to continue...\n" DEFAULT_COLOUR);
 				fflush(stdin);
 				getchar();
 			}
@@ -97,6 +98,7 @@ int main(void) {
 
 		}
 
+		system("cls");
 		thr = trainingHeartRate(gender, age, rhr, inten);
 		printf(BOLD_TEXT "Your training heart rate is %ibpm." DEFAULT_COLOUR, thr);
 		fflush(stdin);
