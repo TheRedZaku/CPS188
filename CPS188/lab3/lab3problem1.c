@@ -17,7 +17,7 @@ int trainingHeartRate(char gender, int age, int rhr, double inten) {
 	} else {
 		mhr = 190.2 / (1 + exp(0.0453 * (age - 107.5)));
 	}
-	thr = (mhr - rhr) * inten + rhr;
+	thr = ((mhr - rhr) * inten) + rhr;
 	return thr;
 }
 
@@ -36,13 +36,13 @@ int main(void) {
         //checking for acceptable input for gender (must be M/m or F/f)
 		while (genderCheck == 0) {
 			system("cls");
-			printf(BOLD_TEXT"What is your gender (M/F): " DEFAULT_COLOUR);
+			printf(BOLD_TEXT "What is your gender (M/F): " DEFAULT_COLOUR);
 			scanf(" %c", &gender);
 			gender = tolower(gender);
 			if (gender == 'm' || gender == 'f') {
 				genderCheck = 1;
 			} else {
-				printf(BOLD_SLOW_BLINK_RED_COLOUR "Invalid Input. I am sorry to make the assumption\nthat there are only 2 genders. Enter a key to continue...\n" DEFAULT_COLOUR);
+				printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nAssume that the only input can be Male (M/m) or Female (F/f).\nEnter a key to continue...\n" DEFAULT_COLOUR);
 				fflush(stdin);
 				getchar();
 			}
@@ -53,10 +53,10 @@ int main(void) {
 			system("cls");
 			printf(BOLD_TEXT"What is your age (0-100): " DEFAULT_COLOUR);
 			scanf(" %i", &age);
-			if (age >= 0 && age <= 100) {
+			if (age > 0 && age <= 100) {
                 ageCheck = 1;   
             } else {
-				printf(BOLD_SLOW_BLINK_RED_COLOUR "Invalid age. If you're less than 0 or greater than 100, I will assume you died/don't exist. \n Enter a key to continue...\n" DEFAULT_COLOUR);
+				printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nAge must be between 0 and 100 (Older people are probably not relevant).\nEnter a key to continue...\n" DEFAULT_COLOUR);
 				fflush(stdin);
 				getchar();
 			}
@@ -69,7 +69,7 @@ int main(void) {
 			if (rhr >= 25 && rhr <= 200) {
 				heartRateCheck = 1;
 			} else {
-				printf(BOLD_SLOW_BLINK_RED_COLOUR "Invalid Input. Your heartrate is not a reasonable value. Enter a key to continue...\n" DEFAULT_COLOUR);
+				printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nResting heart rate must be between 25 and 200 bpm.\nEnter a key to continue...\n" DEFAULT_COLOUR);
 				fflush(stdin);
 				getchar();
 			}
@@ -91,7 +91,7 @@ int main(void) {
 					inten = 0.8;
 				}
 			} else {
-				printf(BOLD_SLOW_BLINK_RED_COLOUR "Invalid Input. Input can only be either L, M, or H. Enter a key to continue...\n" DEFAULT_COLOUR);
+				printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nValid options are Low (L/l), Medium (M/m), or High (H/h).\nEnter a key to continue...\n" DEFAULT_COLOUR);
 				fflush(stdin);
 				getchar();
 			}
@@ -104,13 +104,14 @@ int main(void) {
 		fflush(stdin);
 		getchar();
 	
+		//check if loop should be exited after a calculation is completed.
 		printf(BOLD_TEXT "\nWould you like to calculate another training heart rate? (Y/N): " DEFAULT_COLOUR);
 		scanf(" %c", &yn);
 		system("cls");
 		yn = tolower(yn);
 		if (yn == 'n') {
 			pass = 1;
-			printf(BOLD_TEXT "Have a good day!" DEFAULT_COLOUR);
+			printf(BOLD_TEXT "Have a good day!\nPress enter to leave." DEFAULT_COLOUR);
 			fflush(stdin);
 			getchar();
 		} else {
@@ -120,8 +121,6 @@ int main(void) {
 			fitLvlCheck = 0;
 			fflush(stdin);
 		}
-		
-		
 
 	} while (pass == 0);
 	return 0;

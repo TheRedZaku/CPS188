@@ -5,6 +5,11 @@
 		}
 	],
 	"settings": {
-		"C_Cpp.intelliSenseEngine": "disabled"
+		"C_Cpp.intelliSenseEngine": "disabled",
+		"editor.acceptSuggestionOnCommitCharacter": false,
+		"editor.acceptSuggestionOnEnter": "off",
+		"editor.quickSuggestions": {
+			"other": "off"
+		}
 	}
 }
