@@ -83,7 +83,7 @@ int main(void) {
             total -= quiz10;
         }
 
-        quizAvg = (total / 9) * 0.25; //finding the weighted average for the quizzes
+        quizAvg = round((total / 9) * 0.25); //finding the weighted average for the quizzes
 
         check = 0;
         while (check == 0) {
@@ -117,7 +117,8 @@ int main(void) {
             final *= 0.50;
         }
         system("cls");
-        total = quizAvg + midterm + final;
+        //reusing total to sum the weighted values
+        total = quizAvg + midterm + final; 
         printf(BOLD_TEXT "Your final grade for the course is %d.", total);
         //the current issue is that it is truncating, instead of rounding.
         hold();
