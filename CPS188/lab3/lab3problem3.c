@@ -25,8 +25,8 @@ void badInput(void) {
 int main(void) {
     
     char yn;
-    int quiz1, quiz10, quiz, midterm, final, total, pass = 0, check = 0;
-    double quizAvg;
+    int grade, pass = 0, check = 0;
+    double quizAvg, quiz1, quiz10, quiz, midterm, final, total;
     //where total is the sum of the quizzes, and quizAvg is the actual average of the 10 quizzes
 
     do {
@@ -40,8 +40,8 @@ int main(void) {
                 while (check == 0) {
                     system("cls");
                     printf(BOLD_TEXT "What is your grade for quiz %d: " DEFAULT, i);
-                    scanf("%d", &quiz1);
-                    if (quiz1 < 0 || quiz1 > 100) {
+                    scanf("%lf", &quiz1);
+                    if (quiz1 < 0 || quiz1 > 10) {
                         badInput();
                     } else{ 
                         total += quiz1;
@@ -52,8 +52,8 @@ int main(void) {
                 while (check == 0) {
                     system("cls");
                     printf(BOLD_TEXT "What is your grade for quiz %d: " DEFAULT, i);
-                    scanf("%d", &quiz10);
-                    if (quiz10 < 0 || quiz10 > 100) {
+                    scanf("%lf", &quiz10);
+                    if (quiz10 < 0 || quiz10 > 10) {
                         badInput();
                     } else {
                         total += quiz10;
@@ -64,8 +64,8 @@ int main(void) {
                 while (check == 0) {
                     system("cls");
                     printf(BOLD_TEXT "What is your grade for quiz %d: " DEFAULT, i);
-                    scanf("%d", &quiz);
-                    if (quiz < 0 || quiz > 100) {
+                    scanf("%lf", &quiz);
+                    if (quiz < 0 || quiz > 10) {
                         badInput();
                     } else {
                         total += quiz;
@@ -83,13 +83,13 @@ int main(void) {
             total -= quiz10;
         }
 
-        quizAvg = round((total / 9) * 0.25); //finding the weighted average for the quizzes
+        quizAvg = (total / 9) * 0.25; //finding the weighted average for the quizzes
 
         check = 0;
         while (check == 0) {
             system("cls");
             printf(BOLD_TEXT "What is your midterm exam grade: " DEFAULT);
-            scanf("%d", &midterm);
+            scanf("%lf", &midterm);
             if (midterm < 0 || midterm > 100) {
                 badInput();
             } else {
@@ -101,7 +101,7 @@ int main(void) {
         while (check == 0) {
             system("cls");
             printf(BOLD_TEXT "What is your final exam grade: " DEFAULT);
-            scanf("%d", &final);
+            scanf("%lf", &final);
             if (final < 0 || final > 100) {
                 badInput();
             } else {
@@ -118,11 +118,12 @@ int main(void) {
         }
         system("cls");
         //reusing total to sum the weighted values
-        total = quizAvg + midterm + final; 
-        printf(BOLD_TEXT "Your final grade for the course is %d.", total);
+        total = quizAvg + midterm + final;
+        grade = total;
+        printf(BOLD_TEXT "Your final grade for the course is %d.", grade);
         hold();
 
-        printf(BOLD_TEXT "Would you like to calculate a new average (Y/N)? " DEFAULT);
+        printf(BOLD_TEXT "Would you like to calculate a new average? (Y/N): " DEFAULT);
         scanf(" %c", &yn);
         yn = tolower(yn);
         if (yn == 'n') {

@@ -63,6 +63,7 @@ int main(void) {
             }
         }
 
+        system("cls");
         bmi = bmiCalculator(weight, height);
 
         //prints out bmi value, as well as asks user if they would like to run the program again.
@@ -78,7 +79,7 @@ int main(void) {
             printf("You are obese." DEFAULT);
         }
 
-        printf(BOLD_TEXT "\nWould you like to do a new calculation (Y/N): " DEFAULT);
+        printf(BOLD_TEXT "\nWould you like to do a new calculation? (Y/N): " DEFAULT);
         scanf(" %c", &yn);
         yn = tolower(yn);
         if (yn == 'n') {
