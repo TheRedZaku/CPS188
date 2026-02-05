@@ -66,10 +66,18 @@ int main(void) {
         bmi = bmiCalculator(weight, height);
 
         //prints out bmi value, as well as asks user if they would like to run the program again.
-        printf(BOLD_TEXT "Your BMI value is %.1lf" DEFAULT, bmi);
-        fflush(stdin);
-        getchar();
-        fflush(stdin);
+        printf(BOLD_TEXT "Your BMI value is %.1lf. ", bmi);
+
+        if (bmi < 18.5) {
+            printf("You are underweight." DEFAULT);
+        } else if (bmi >= 18.5 && bmi <=24.9) { 
+            printf("You are normal." DEFAULT);
+        } else if (bmi >= 25 && bmi <= 29.9) { 
+            printf("You are overweight." DEFAULT);
+        } else {
+            printf("You are obese." DEFAULT);
+        }
+
         printf(BOLD_TEXT "\nWould you like to do a new calculation (Y/N): " DEFAULT);
         scanf(" %c", &yn);
         yn = tolower(yn);
