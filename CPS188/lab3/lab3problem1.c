@@ -9,6 +9,12 @@
 #define DEFAULT_COLOUR "\033[0m"
 #define BOLD_TEXT "\033[1m"
 
+//pausing the program output for the user to read the screen
+void hold(void) {
+	fflush(stdin);
+	getchar();
+}
+
 //function for finding the training heart rate, based on the equation in the document
 int trainingHeartRate(char gender, int age, int rhr, double inten) {
 	double mhr, thr;
@@ -31,8 +37,7 @@ int main(void) {
 	do {
 		system("cls");
 		printf(BOLD_TEXT "Training Heart Rate Program\nPress enter to continue...\n" DEFAULT_COLOUR);
-		fflush(stdin);
-        getchar();
+		hold();
         //checking for acceptable input for gender (must be M/m or F/f)
 		while (genderCheck == 0) {
 			system("cls");
@@ -43,8 +48,7 @@ int main(void) {
 				genderCheck = 1;
 			} else {
 				printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nAssume that the only input can be Male (M/m) or Female (F/f).\nEnter a key to continue...\n" DEFAULT_COLOUR);
-				fflush(stdin);
-				getchar();
+				hold();
 			}
 		}
 		
@@ -57,8 +61,7 @@ int main(void) {
                 ageCheck = 1;   
             } else {
 				printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nAge must be between 0 and 100 (Older people are probably not relevant).\nEnter a key to continue...\n" DEFAULT_COLOUR);
-				fflush(stdin);
-				getchar();
+				hold();
 			}
 		}
 
@@ -70,8 +73,7 @@ int main(void) {
 				heartRateCheck = 1;
 			} else {
 				printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nResting heart rate must be between 25 and 200 bpm.\nEnter a key to continue...\n" DEFAULT_COLOUR);
-				fflush(stdin);
-				getchar();
+				hold();
 			}
 		}
 
@@ -92,8 +94,7 @@ int main(void) {
 				}
 			} else {
 				printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nValid options are Low (L/l), Medium (M/m), or High (H/h).\nEnter a key to continue...\n" DEFAULT_COLOUR);
-				fflush(stdin);
-				getchar();
+				hold();
 			}
 
 		}
@@ -101,8 +102,7 @@ int main(void) {
 		system("cls");
 		thr = trainingHeartRate(gender, age, rhr, inten);
 		printf(BOLD_TEXT "Your training heart rate is %ibpm." DEFAULT_COLOUR, thr);
-		fflush(stdin);
-		getchar();
+		hold();
 	
 		//check if loop should be exited after a calculation is completed.
 		printf(BOLD_TEXT "\nWould you like to calculate another training heart rate? (Y/N): " DEFAULT_COLOUR);
@@ -112,8 +112,7 @@ int main(void) {
 		if (yn == 'n') {
 			pass = 1;
 			printf(BOLD_TEXT "Have a good day!\nPress enter to leave." DEFAULT_COLOUR);
-			fflush(stdin);
-			getchar();
+			hold();
 		} else {
 			genderCheck = 0;
 			ageCheck = 0;
@@ -125,5 +124,3 @@ int main(void) {
 	} while (pass == 0);
 	return 0;
 }
-
-

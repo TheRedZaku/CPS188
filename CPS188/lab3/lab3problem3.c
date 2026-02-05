@@ -120,7 +120,6 @@ int main(void) {
         //reusing total to sum the weighted values
         total = quizAvg + midterm + final; 
         printf(BOLD_TEXT "Your final grade for the course is %d.", total);
-        //the current issue is that it is truncating, instead of rounding.
         hold();
 
         printf(BOLD_TEXT "Would you like to calculate a new average (Y/N)? " DEFAULT);
