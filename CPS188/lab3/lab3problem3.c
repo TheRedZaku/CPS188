@@ -1,137 +1,83 @@
 /*LAB #3 Problem #3*/
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
 
 #define BOLD_TEXT "\033[1m"
 #define DEFAULT "\033[0m"
-#define BOLD_SLOW_BLINK_RED_COLOUR "\033[1;6;31m"
-
-//function for allowing the reader to control the speed of text from the console
-void hold(void) {
-    fflush(stdin);
-    getchar();
-}
-
-//function for inputs that are not allowed. In this case it is repetitive, and so a function is used.
-void badInput(void) {
-    printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input. Grade entered must be between 0 to 100. Press enter to continue..." DEFAULT);
-    fflush(stdin);
-    getchar();
-}
 
 int main(void) {
     
-    char yn;
-    int grade, pass = 0, check = 0;
+    int grade;
     double quizAvg, quiz1, quiz10, quiz, midterm, final, total;
-    //where total is the sum of the quizzes, and quizAvg is the actual average of the 10 quizzes
+    //where total is the sum of the quizzes, and quizAvg is the actual average of the 10 (9) quizzes
 
-    do {
-        system("cls");
-        printf(BOLD_TEXT "Overall Course Grade Calculator" DEFAULT);
-        hold();
+    printf(BOLD_TEXT "Overall Course Grade Calculator\n" DEFAULT);
 
-        for (int i = 1; i <= 10; i++) {
-            check = 0;
-            if (i == 1) {
-                while (check == 0) {
-                    system("cls");
-                    printf(BOLD_TEXT "What is your grade for quiz %d: " DEFAULT, i);
-                    scanf("%lf", &quiz1);
-                    if (quiz1 < 0 || quiz1 > 10) {
-                        badInput();
-                    } else{ 
-                        total += quiz1;
-                        check = 1;
-                    }
-                }
-            } else if (i == 10) {
-                while (check == 0) {
-                    system("cls");
-                    printf(BOLD_TEXT "What is your grade for quiz %d: " DEFAULT, i);
-                    scanf("%lf", &quiz10);
-                    if (quiz10 < 0 || quiz10 > 10) {
-                        badInput();
-                    } else {
-                        total += quiz10;
-                        check = 1; 
-                    }
-                }    
-            } else {
-                while (check == 0) {
-                    system("cls");
-                    printf(BOLD_TEXT "What is your grade for quiz %d: " DEFAULT, i);
-                    scanf("%lf", &quiz);
-                    if (quiz < 0 || quiz > 10) {
-                        badInput();
-                    } else {
-                        total += quiz;
-                        check = 1; 
-                    }
-                }
-                
-            }
-        }
+    //storing and tracking values for each quiz
+    printf(BOLD_TEXT "What is your grade for quiz 1: " DEFAULT);
+    scanf("%lf", &quiz1);
+    total += quiz1;
+    printf(BOLD_TEXT "What is your grade for quiz 2: " DEFAULT);
+    scanf("%lf", &quiz);
+    total += quiz;
+    printf(BOLD_TEXT "What is your grade for quiz 3: " DEFAULT);
+    scanf("%lf", &quiz);
+    total += quiz;
+    printf(BOLD_TEXT "What is your grade for quiz 4: " DEFAULT);
+    scanf("%lf", &quiz);
+    total += quiz;
+    printf(BOLD_TEXT "What is your grade for quiz 5: " DEFAULT);
+    scanf("%lf", &quiz);
+    total += quiz;
+    printf(BOLD_TEXT "What is your grade for quiz 6: " DEFAULT);
+    scanf("%lf", &quiz);
+    total += quiz;
+    printf(BOLD_TEXT "What is your grade for quiz 7: " DEFAULT);
+    scanf("%lf", &quiz);
+    total += quiz;
+    printf(BOLD_TEXT "What is your grade for quiz 8: " DEFAULT);
+    scanf("%lf", &quiz);
+    total += quiz;
+    printf(BOLD_TEXT "What is your grade for quiz 9: " DEFAULT);
+    scanf("%lf", &quiz);
+    total += quiz;
+    printf(BOLD_TEXT "What is your grade for quiz 10: " DEFAULT);
+    scanf("%lf", &quiz10);
+    total += quiz10;
 
-        //removing the first or last entry, depending on which one is smaller
-        if (quiz1 <= quiz10) {
-            total -= quiz1;
-        } else {
-            total -= quiz10;
-        }
+    //removing the first or last entry, depending on which one is smaller
+    if (quiz1 <= quiz10) {
+        total -= quiz1;
+    } else {
+        total -= quiz10;
+    }
 
-        quizAvg = (total / 9) * 0.25; //finding the weighted average for the quizzes
+    quizAvg = (total / 9) * 0.25; //finding the weighted average for the quizzes
 
-        check = 0;
-        while (check == 0) {
-            system("cls");
-            printf(BOLD_TEXT "What is your midterm exam grade: " DEFAULT);
-            scanf("%lf", &midterm);
-            if (midterm < 0 || midterm > 100) {
-                badInput();
-            } else {
-                check = 1;
-            }
-        }
+    printf(BOLD_TEXT "What is your midterm exam grade: " DEFAULT);
+    scanf("%lf", &midterm);
+            
+    printf(BOLD_TEXT "What is your final exam grade: " DEFAULT);
+    scanf("%lf", &final);
 
-        check = 0;
-        while (check == 0) {
-            system("cls");
-            printf(BOLD_TEXT "What is your final exam grade: " DEFAULT);
-            scanf("%lf", &final);
-            if (final < 0 || final > 100) {
-                badInput();
-            } else {
-                check = 1;
-            }
-        }
+    //checking if midterm or final grade is higher, and distributing the weighting as appropriate
+    if (midterm >= final) {
+        midterm *= 0.35;
+        final *= 0.40;
+    } else {
+        midterm *= 0.25;
+        final *= 0.50;
+    }
 
-        if (midterm >= final) {
-            midterm *= 0.35;
-            final *= 0.40;
-        } else {
-            midterm *= 0.25;
-            final *= 0.50;
-        }
-        system("cls");
-        //reusing total to sum the weighted values
-        total = quizAvg + midterm + final;
-        grade = total;
-        printf(BOLD_TEXT "Your final grade for the course is %d.", grade);
-        hold();
+    //reusing total to sum the weighted values
+    total = quizAvg + midterm + final;
+    grade = total;
+    printf(BOLD_TEXT "Your final grade for the course is %d.\nPress enter to exit." DEFAULT, grade);
 
-        printf(BOLD_TEXT "Would you like to calculate a new average? (Y/N): " DEFAULT);
-        scanf(" %c", &yn);
-        yn = tolower(yn);
-        if (yn == 'n') {
-            printf(BOLD_TEXT "Have a great day! Press enter to leave." DEFAULT);
-            pass = 1;
-            hold();
-        }
-    } while (pass == 0);
+    fflush(stdin);
+    getchar();
 
     return 0;
 }

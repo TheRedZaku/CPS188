@@ -2,12 +2,10 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include <stdlib.h>
 #include <math.h>
 
 #define BOLD_TEXT "\033[1m"
 #define DEFAULT "\033[0m"
-#define BOLD_SLOW_BLINK_RED_COLOUR "\033[1;6;31m"
 
 double bmiCalculator (double weight, double height) {
 
@@ -18,84 +16,36 @@ double bmiCalculator (double weight, double height) {
 
 int main(void) {
 
-    char yn; //program repetition check
-    int pass = 0, weightCheck = 0, heightCheck = 0; //loop exit conditions
     double weight, height, bmi;
 
-    do {
-        system("cls");
-        printf(BOLD_TEXT "BMI Calculation Program\n" DEFAULT);
-        fflush(stdin);
-        getchar();
-        fflush(stdin);
-        
-        //input validation only for numbers. Doesn't check if string is entered.
-        while (weightCheck == 0) {
-            system("cls");
-            fflush(stdin);
-            printf(BOLD_TEXT "What is your weight in kg: " DEFAULT);
-            scanf(" %lf", &weight);
-            fflush(stdin);
-            if (weight <= 0 || weight >= 700) {
-                printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nYour weight must be between (0 - 700)kg.\nPress enter to continue..." DEFAULT);
-                fflush(stdin);
-                getchar();
-                fflush(stdin);
-            } else {
-                weightCheck = 1;
-            }
-        }
+    printf(BOLD_TEXT "BMI Calculation Program\n" DEFAULT);
     
-        //input validation for input range only. Doesn't validate for string/char input.
-        while (heightCheck == 0) {
-            system("cls");
-            fflush(stdin);
-            printf(BOLD_TEXT "What is your height in m: " DEFAULT);
-            scanf(" %lf", &height);
-            fflush(stdin);
-            if (height <= 0 || height > 3) {
-                printf(BOLD_SLOW_BLINK_RED_COLOUR "\nInvalid input.\nYour height must be between (0 to 3)m.\nPress enter to continue..." DEFAULT);
-                fflush(stdin);
-                getchar();
-                fflush(stdin);
-            } else {
-                heightCheck = 1;
-            }
-        }
+    //saving weight to a variable
+    printf(BOLD_TEXT "What is your weight in kg: " DEFAULT);
+    scanf(" %lf", &weight);
+     
+    //saving height to a variable
+    printf(BOLD_TEXT "What is your height in m: " DEFAULT);
+    scanf(" %lf", &height);
 
-        system("cls");
-        bmi = bmiCalculator(weight, height);
+    bmi = bmiCalculator(weight, height);
 
-        //prints out bmi value, as well as asks user if they would like to run the program again.
-        printf(BOLD_TEXT "Your BMI value is %.1lf. ", bmi);
+    printf(BOLD_TEXT "Your BMI value is %.1lf. ", bmi);
 
-        if (bmi < 18.5) {
-            printf("You are underweight." DEFAULT);
-        } else if (bmi >= 18.5 && bmi <=24.9) { 
-            printf("You are normal." DEFAULT);
-        } else if (bmi >= 25 && bmi <= 29.9) { 
-            printf("You are overweight." DEFAULT);
-        } else {
-            printf("You are obese." DEFAULT);
-        }
+    //checking for the BMI classification
+    if (bmi < 18.5) {
+        printf("You are underweight.\nPress enter to exit." DEFAULT);
+    } else if (bmi >= 18.5 && bmi <= 24.9) { 
+        printf("You are normal.\nPress enter to exit." DEFAULT);
+    } else if (bmi > 24.9 && bmi <= 29.99) { 
+        printf("You are overweight.\nPress enter to exit." DEFAULT);
+    } else {
+        printf("You are obese.\nPress enter to exit." DEFAULT);
+    }
 
-        printf(BOLD_TEXT "\nWould you like to do a new calculation? (Y/N): " DEFAULT);
-        scanf(" %c", &yn);
-        yn = tolower(yn);
-        if (yn == 'n') {
-            pass = 1;
-            system("cls");
-            printf(BOLD_TEXT "Have a good day!\nPress enter to leave." DEFAULT);
-            fflush(stdin);
-            getchar();
-            fflush(stdin);
-        } else {
-            weightCheck = 0;
-            heightCheck = 0;
-            fflush(stdin);
-        }
+    //pausing the program for the user to read the output
+    fflush(stdin);
+    getchar();
 
-    } while (pass == 0);
-    
     return 0;
 } 

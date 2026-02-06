@@ -19,63 +19,55 @@ int main(void) {
 
     //returns a card value from 1 to 13
     //not the most random possible value ever, but it works for our purposes
-    do {
-        printf("Random Card Picker");
-        fflush(stdin);
-        getchar();
-        
-        cardValue = rand() % 13 + 1;
-        cardSuit = rand() % 4 + 1;
-        
-        //case 1, 11, 12, and 13 return the card as a symbol A,J,Q,K
-        switch (cardValue) {
-            case 1:
-                cardSymbol = 'A';
-                printf("\nYour card is the %c of ", cardSymbol);
-                break;
-            case 11:
-                cardSymbol = 'J';
-                printf("\nYour card is the %c of ", cardSymbol);
-                break;
-            case 12:
-                cardSymbol = 'Q';
-                printf("\nYour card is the %c of ", cardSymbol);
-                break;
-            case 13:
-                cardSymbol = 'K';
-                printf("\nYour card is the %c of ", cardSymbol);
-                break;
-            default:
-                printf("\nYour card is the %d of ", cardValue);//returns the card as a number
-                break;
-        }
-        
-        //sets the suit to be displayed, based on cardSuit
-        switch (cardSuit) {
-            case 1: 
-                printf("\u2660");
-                break;
-            case 2:
-                printf("\u2665");
-                break;
-            case 3:
-                printf("\u2663");
-                break;
-            case 4:
-                printf("\u2666");
-                break;
-        }
-        
-        //repeats the program if the user chooses to
-        printf("\nWould you like to draw another card? (Y/N): ");
-        scanf("%c", &yn);
-        yn = tolower(yn);
-        if (yn == 'n') {
-            pass = 1;
-            fflush(stdin);
-        }
-        system("cls");
-    } while (pass == 0);
+    printf("Random Card Picker");
+    fflush(stdin);
+    getchar();
+    
+    cardValue = rand() % 13 + 1;
+    cardSuit = rand() % 4 + 1;
+    
+    //case 1, 11, 12, and 13 return the card as a symbol A,J,Q,K
+    switch (cardValue) {
+        case 1:
+            cardSymbol = 'A';
+            printf("\nYour card is the %c of ", cardSymbol);
+            break;
+        case 11:
+            cardSymbol = 'J';
+            printf("\nYour card is the %c of ", cardSymbol);
+            break;
+        case 12:
+            cardSymbol = 'Q';
+            printf("\nYour card is the %c of ", cardSymbol);
+            break;
+        case 13:
+            cardSymbol = 'K';
+            printf("\nYour card is the %c of ", cardSymbol);
+            break;
+        default:
+            //returns the card as a number
+            printf("\nYour card is the %d of ", cardValue);
+            break;
+    }
+    
+    //sets the suit to be displayed, based on cardSuit
+    switch (cardSuit) {
+        case 1: 
+            printf("\u2660\nPress enter to exit.");
+            break;
+        case 2:
+            printf("\u2665\nPress enter to exit.");
+            break;
+        case 3:
+            printf("\u2663\nPress enter to exit.");
+            break;
+        case 4:
+            printf("\u2666\nPress enter to exit.");
+            break;
+    }
+
+    fflush(stdin);
+    getchar();
 
     return 0;
 }
