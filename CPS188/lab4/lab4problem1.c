@@ -31,9 +31,8 @@ int main(void) {
     for (int row = 0; row < 9; row++) {
         for (int column = 0; column <= row; column++) {
             total = factorial(row) / (factorial(column) * factorial(row - column));
-            //printf("\033[1;6;31m""col: %d" "\033[0m", column)
             
-            randNum = rand() % 4;
+            /*randNum = rand() % 4;
             switch (randNum) {
                 case 0:
                     printf(RED);
@@ -47,41 +46,20 @@ int main(void) {
                 case 3:
                     printf(BLUE);
                     break;
-            }
-            /*if (column == 0) {
-                switch (row) {
-                    case 0:
-                        printf("%34d", total);
-                        break;
-                    case 1:
-                        printf("%30d", total);
-                        break;
-                    case 2:
-                        printf("%26d", total);
-                        break;
-                    case 3:
-                        printf("%22d", total);
-                        break;
-                    case 4:
-                        printf("%18d", total);
-                        break;
-                    case 5:
-                        printf("%14d", total);
-                        break;
-                    case 6:
-                        printf("%10d", total);
-                        break;
-                    case 7:
-                        printf("%6d", total);
-                        break;
-                    case 8:
-                        printf("%2d", total);
-                        break;
-                }
-            } else {
-                printf("%8d", total);
             }*/
             
+            if (column == 1) {
+                printf(BLUE);
+            } else if (column == 2) {
+                printf(RED);
+            } else if (column == 3) {
+                printf(GREEN);
+            } else if (column == 4) {
+                printf(YELLOW);
+            } else {
+                printf("\033[0m");
+            }
+
             if (column == 0) {
                 leftSpacing = (spaces - (4*row));
                 printf("%*d", leftSpacing, total);
