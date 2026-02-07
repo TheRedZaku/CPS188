@@ -23,7 +23,7 @@ int main(void) {
     
     srand(time(NULL));
 
-    int total, spaces = 22, leftSpacing = 0, randNum;
+    int total, spaces = 34, leftSpacing = 0, randNum;
     //make a loop of 9
     //use 'n choose k' formuala from combinations
     /*let row be n
@@ -31,8 +31,8 @@ int main(void) {
     for (int row = 0; row < 9; row++) {
         for (int column = 0; column <= row; column++) {
             total = factorial(row) / (factorial(column) * factorial(row - column));
-            //printf("\033[1;6;31m""col: %d" "\033[0m", column);
-            leftSpacing = (spaces - row) / 2;
+            //printf("\033[1;6;31m""col: %d" "\033[0m", column)
+            
             randNum = rand() % 4;
             switch (randNum) {
                 case 0:
@@ -48,8 +48,46 @@ int main(void) {
                     printf(BLUE);
                     break;
             }
-        
-            printf("%*d ", leftSpacing, total);
+            /*if (column == 0) {
+                switch (row) {
+                    case 0:
+                        printf("%34d", total);
+                        break;
+                    case 1:
+                        printf("%30d", total);
+                        break;
+                    case 2:
+                        printf("%26d", total);
+                        break;
+                    case 3:
+                        printf("%22d", total);
+                        break;
+                    case 4:
+                        printf("%18d", total);
+                        break;
+                    case 5:
+                        printf("%14d", total);
+                        break;
+                    case 6:
+                        printf("%10d", total);
+                        break;
+                    case 7:
+                        printf("%6d", total);
+                        break;
+                    case 8:
+                        printf("%2d", total);
+                        break;
+                }
+            } else {
+                printf("%8d", total);
+            }*/
+            
+            if (column == 0) {
+                leftSpacing = (spaces - (4*row));
+                printf("%*d", leftSpacing, total);
+            } else {
+                printf("%8d", total);
+            }
         }
         printf("\n");
     }
