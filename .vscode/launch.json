@@ -8,6 +8,7 @@
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
+            //default is C:/TDM-GCC-64/bin
             "cwd": "C:/TDM-GCC-64/bin",
             "environment": [],
             "externalConsole": true,

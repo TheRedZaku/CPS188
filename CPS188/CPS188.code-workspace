@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": ".."
+		},
+		{
+			"path": "../../../../../TDM-GCC-64/bin"
 		}
 	],
 	"settings": {
