@@ -32,7 +32,7 @@ int main(void) {
         for (int column = 0; column <= row; column++) {
             total = factorial(row) / (factorial(column) * factorial(row - column));
             
-            /*randNum = rand() % 4;
+            randNum = rand() % 4;
             switch (randNum) {
                 case 0:
                     printf(RED);
@@ -46,9 +46,9 @@ int main(void) {
                 case 3:
                     printf(BLUE);
                     break;
-            }*/
+            }
             
-            if (column == 1) {
+            /*if (column == 1) {
                 printf(BLUE);
             } else if (column == 2) {
                 printf(RED);
@@ -58,7 +58,7 @@ int main(void) {
                 printf(YELLOW);
             } else {
                 printf("\033[0m");
-            }
+            }*/
 
             if (column == 0) {
                 leftSpacing = (spaces - (4*row));

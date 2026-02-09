@@ -16,7 +16,6 @@ int main(void) {
     printf("The maximum temperature the cylinder can withstand is : %.3lf Kelvin.\n", maxKelvin);
     getchar();
 
-
     //to find initial pressure at 0 celsius, use the same equation (temperature must be absolute)
     celsius = 0, kelvin = 273.15, atm = 45.525;
     //reuse refKelvin as a temporary storage for the previous kelvin value
@@ -25,25 +24,15 @@ int main(void) {
     "----------------     ----------------       --------------\n");
 
     do {
-        if (iterations == 0) {
-            printf("%4.3lf                %4.3lf                %4.3lf\n", celsius, kelvin, atm);  
-        } else if (iterations > 0 && iterations < 3) {
-            printf("%4.3lf              %4.3lf                %4.3lf\n", celsius, kelvin, atm);  
-        } else if (iterations == 3) {
-            printf("%4.3lf              %4.3lf               %4.3lf\n", celsius, kelvin, atm);  
-        } else {
-            printf("%4.3lf             %4.3lf               %4.3lf\n", celsius, kelvin, atm);  
-
-        }
+        printf("%7.2lf %20.2lf %22.3lf\n", celsius, kelvin, atm);  
         
         celsius += 250; //250 degree increment
-        refKelvin = kelvin;
-        kelvin += 273.15;
-        atm *= kelvin/refKelvin;
+        kelvin += 250;
+        atm = (refAtm * kelvin) / refKelvin;
         iterations++;
     } while (atm <= 500);
 
-    printf("\033[1;5;31m" "%4.3lf             %4.3lf %21.3lf\n" "\033[0m", celsius, kelvin, atm);
+    printf("\033[1;5;31m" "%7.2lf %20.2lf %22.3lf\n" "\033[0m", celsius, kelvin, atm);
 
     printf("KABOOM! You're all dead.");
     fflush(stdin);
