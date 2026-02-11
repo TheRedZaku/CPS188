@@ -6,7 +6,6 @@
 
 int main(void) {
     
-    int iterations = 0;
     double refKelvin = 300, refAtm = 50, maxKelvin = 0, maxAtm = 500, celsius, kelvin, atm;
 
     //a) calculating the maximum possible temperature the cylinder can withstand
@@ -18,10 +17,9 @@ int main(void) {
 
     //to find initial pressure at 0 celsius, use the same equation (temperature must be absolute)
     celsius = 0, kelvin = 273.15, atm = 45.525;
-    //reuse refKelvin as a temporary storage for the previous kelvin value
-
-    printf("Temperature (\u00b0C)    Temperature (°K)      Pressure (atm)\n"
-    "----------------     ----------------       --------------\n");
+    //Kelvin has no degree symbol, as it is absolute
+    printf("Temperature (\u00b0C)    Temperature (K)      Pressure (atm)\n"
+    "----------------     ----------------     --------------\n");
 
     do {
         printf("%7.2lf %20.2lf %22.3lf\n", celsius, kelvin, atm);  
@@ -29,7 +27,7 @@ int main(void) {
         celsius += 250; //250 degree increment
         kelvin += 250;
         atm = (refAtm * kelvin) / refKelvin;
-        iterations++;
+    //while loop condition is true until cylinder explodes
     } while (atm <= 500);
 
     printf("\033[1;5;31m" "%7.2lf %20.2lf %22.3lf\n" "\033[0m", celsius, kelvin, atm);

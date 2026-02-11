@@ -9,6 +9,7 @@
 #define GREEN "\033[1;32m"
 #define BLUE "\033[1;34m"
 
+//calculates a factorial using a loop, since factorials are not a built-in function
 int factorial(int num) {
 
     int factValue = 1;
@@ -25,13 +26,14 @@ int main(void) {
 
     int total, spaces = 34, leftSpacing = 0, randNum;
     //make a loop of 9
-    //use 'n choose k' formuala from combinations
+    //use 'n choose k' formula from combinations
     /*let row be n
     and column be k*/
     for (int row = 0; row < 9; row++) {
         for (int column = 0; column <= row; column++) {
             total = factorial(row) / (factorial(column) * factorial(row - column));
             
+            //changes the number colours for fun
             randNum = rand() % 4;
             switch (randNum) {
                 case 0:
@@ -47,23 +49,14 @@ int main(void) {
                     printf(BLUE);
                     break;
             }
-            
-            /*if (column == 1) {
-                printf(BLUE);
-            } else if (column == 2) {
-                printf(RED);
-            } else if (column == 3) {
-                printf(GREEN);
-            } else if (column == 4) {
-                printf(YELLOW);
-            } else {
-                printf("\033[0m");
-            }*/
 
+            //control padding/spacing of the numbers in the triangle
             if (column == 0) {
+                //first output of every row is going to have a specific spacing
                 leftSpacing = (spaces - (4*row));
                 printf("%*d", leftSpacing, total);
             } else {
+                //every other line has a generic spacing format to keep numbers aligned
                 printf("%8d", total);
             }
         }
