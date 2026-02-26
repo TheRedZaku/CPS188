@@ -1,14 +1,13 @@
 /* Lab #5 Problem #1 */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 
 void calculate (int num1, int num2, double *avg, double *sum, double *absValue, double *squareRoot) {
 
     *sum = pow(num1, 2) + pow(num2 , 2);
     *avg = (num1 + num2) / 2.0;
-    *absValue = fabs(pow(num1 - num2, 2));
+    *absValue = fabs(pow(num1 - num2, 2)); //absolute value function is redundant, but the lab manual asks for it
     *squareRoot = sqrt(*sum);
 
 }
