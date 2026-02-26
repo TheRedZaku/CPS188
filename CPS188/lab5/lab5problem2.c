@@ -58,7 +58,7 @@ int main(void) {
         printf("\n1. Traveling to the Moon.\n2. Traveling to Mars.\n3. Traveling to Venus.\n4. Exit program.\n");
         scanf("%d", &choice);
         switch(choice) {
-            case 1:
+            case 1: //repeatable cases, just with changing speed and distance values
                 speedChoice(&speed);
                 timeMoon(speed, &tPerigee, &tApogee);
                 printf("The minimum travel time is %.2lfhrs and the maximum travel time is %.2lfhrs.\nPress enter to return to the main menu.", tPerigee, tApogee);

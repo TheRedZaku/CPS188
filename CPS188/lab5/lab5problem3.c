@@ -14,7 +14,7 @@ void validateInput(double *ptr) {
     
     do {
         scanf("%lf", &input);
-        if (input > 0) {
+        if (input > 0) {//checks the input, and stores it only if it is greater than 0. Otherwise, the while loop repeats
             *ptr = input;
             pass = 1;
         } else {
@@ -25,25 +25,20 @@ void validateInput(double *ptr) {
 
 int main(void) {
 
-    int pass = 0;
     double shortBase, longBase, height, area;
-    char choice;
+    char choice = 'y';
 
-    do {
         fflush(stdin);
         printf("Trapezoid Area Calculator\nWhat is the length of the short base: ");
         validateInput(&shortBase);
         printf("\nWhat is the length of the long base: ");
         validateInput(&longBase);
-        printf("\nWhat is the length of the height: ");
+        printf("\nWhat is the height: ");
         validateInput(&height);
         areaTrapezoid(shortBase, longBase, height, &area);
+        printf("The surface area of the trapezoid is %.3lfunits\u00B2.\nPress enter to exit.", area);
+        //will not display correctly in an IDE, must change input language or use something like OnlineGDB
         fflush(stdin);
-        printf("The surface area of the trapezoid is %.3lfunits\u00B2.\nWould you like to do another calculation? [Y/N]: ", area);
-        scanf("%c", &choice);
-        if (tolower(choice) == 'n') {
-            pass = 1;
-        }
-    } while (pass != 1);
+        getchar();
     return 0;
 }

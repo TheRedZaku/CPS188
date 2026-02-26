@@ -4,7 +4,7 @@
 #include <math.h>
 
 void calculate (int num1, int num2, double *avg, double *sum, double *absValue, double *squareRoot) {
-
+//completes all the calculations, although not in the same order, but done to be convenient
     *sum = pow(num1, 2) + pow(num2 , 2);
     *avg = (num1 + num2) / 2.0;
     *absValue = fabs(pow(num1 - num2, 2)); //absolute value function is redundant, but the lab manual asks for it
@@ -22,7 +22,7 @@ int main (void) {
     printf("\ninput a second number: ");
     scanf("%d", &num2);
     calculate(num1, num2, &avg, &sum, &absValue, &squareRoot);
-    printf("The average of the two numbers is: %.3lf\nThe sum of the squares of the two numbers is: %.3lf\nThe absolute value of the square of the difference between the two numbers is: %.3lf\nThe square root of the sum of the squares of the two numbers is: %.3lf", avg, sum, absValue, squareRoot);
+    printf("The average of the two numbers is: %.0lf\nThe sum of the squares of the two numbers is: %.0lf\nThe absolute value of the square of the difference between the two numbers is: %.0lf\nThe square root of the sum of the squares of the two numbers is: %.2lf", avg, sum, absValue, squareRoot);
     fflush(stdin);
     getchar();
     return 0;
