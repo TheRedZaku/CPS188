@@ -12,36 +12,45 @@ int main(void) {
     FILE *numbers;
     numbers = fopen("CTextFiles\\numbers.txt", "r");
 
-    int arraySize, min, max;
-    double xLow, xHigh;
-    double arrX[100];
+    int arraySize, dataSet = 1;
+    double xLow = 0, xHigh = 0, min, max;
+    double arrX[20];
+    double normArrX[20];
 
-    while(!(feof(numbers))) {
-
-        fscanf(numbers, "%d %d %d", &arraySize, &min, &max);
-        
-        arrX[arraySize];//initialize after you get the array size, so you don't need additional buffer space/don't need an array that is bigger than the data set.
-        for (int loop = 0; loop < arraySize; loop++) {
-            fscanf(numbers, "%lf", &arrX[loop]);
-        }
-        qsort(arrX, arraySize, sizeof(arrX[0]), compare);
-
-        fclose(numbers);
-    }
-
-    xLow = arrX[0];
-    xHigh = arrX[arraySize-1];
-    double normArrX[arraySize];
-
-    for(int i = 0; i < arraySize; i++) {
-        normArrX[i] = min + (arrX[i] - xLow) * (max - min) / (xHigh - xLow);
-        printf("%lf", arrX[i]);
-    }
+    printf("Original Sorted Array |||| Normalized Sorted Array\n");
 
     if (numbers != NULL) {
+        //printf("working, probably...");
 
+        while(!(feof(numbers))) {
+            
+            printf("Data Set #%d\n", dataSet);
+            dataSet++;//spaces out the arrays, and also tells you the set #
+            
+            fscanf(numbers, "%d %lf %lf", &arraySize, &min, &max);
+            
+            for (int loop = 0; loop < arraySize; loop++) {//loop through and store numbers from text file into the array
+                fscanf(numbers, "%lf", &arrX[loop]);
+            }
+            qsort(arrX, arraySize, sizeof(double), compare);//only sort up to the scanned numbers; rest are garbage values
+
+            xLow = arrX[0];//since the array is sorted, the lowest value is at index 0
+            xHigh = arrX[arraySize-1];//since array starts at 0, the highest bound would be the arraySize - 1
+            
+            if (xHigh - xLow != 0) {//prevents 0/0 division
+                for(int i = 0; i < arraySize; i++) {//changes the bounds of the array using the given equation
+                    normArrX[i] = min + (arrX[i] - xLow) * (max - min) / (xHigh - xLow);
+                    printf("%21.2lf %28.2lf\n", arrX[i], normArrX[i]);
+                
+                }
+            }
+
+        }
+
+    fclose(numbers);
+    
     } else {
-        printf("File Error.");
+        printf("File Error.");//Prevent file reading error
     }
 
     fflush(stdin);
