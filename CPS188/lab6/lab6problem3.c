@@ -25,7 +25,7 @@ char pop (char stack[],    /* input/output - the stack */
         item = stack[*top]; //store the top value to be removed.
         --(*top);
     } else {
-         item = STACK_EMPTY;
+        item = STACK_EMPTY;
     }
 
     return (item); //return it
@@ -35,13 +35,12 @@ int main (void) {
 
     char s[STACK_SIZE];
     int s_top = -1; // stack is empty
-    int top = 0;
+    //int top = 0;
     int k = 0;
 
     printf("The current stack is: ");
     for (int i = 0; i < 5; i++) {
         push(s, i+65, &s_top, STACK_SIZE);
-        
     }
 
     for (int k = 0; k < s_top + 1; k++) {
