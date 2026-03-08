@@ -1,16 +1,16 @@
-/* Lab #6 Problem #1 */
+/* Lab #6 Problem #1*/
 
 #include <stdio.h>
 #include <stdlib.h>
 
 int compare(const void *num1, const void *num2) {
-    return(*(double*)num1 - *(double*)num2);
+    return((*(double*)num1 > *(double*)num2) - (*(double*)num1 < *(double*)num2));
 }
 
 int main(void) {
 
     FILE *numbers;
-    numbers = fopen("CTextFiles\\numbers.txt", "r");
+    numbers = fopen("CTextFiles\\numbers.txt", "r");//My files are placed inside a folder in my IDE; hence the CTextFiles
 
     int arraySize, dataSet = 1;
     double xLow = 0, xHigh = 0, min, max;

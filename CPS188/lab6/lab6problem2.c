@@ -6,19 +6,19 @@
 
 //repetitive comparison functions
 int compareFloatAscending(const void *num1, const void *num2) {
-    return (*(float*)num1 - *(float*)num2);
+    return ((*(float*)num1 > *(float*)num2) - (*(float*)num1 < *(float*)num2));
 }
 
 int compareIntAscending(const void *num1, const void *num2) {
-    return (*(int*)num1 - *(int*)num2);
+    return ((*(int*)num1 > *(int*)num2) - (*(int*)num1 < *(int*)num2));
 }
 
 int compareFloatDescending(const void *num1, const void *num2) {
-    return (*(float*)num2 - *(float*)num1);
+    return ((*(float*)num1 < *(float*)num2) - (*(float*)num1 > *(float*)num2));
 }
 
 int compareIntDescending(const void *num1, const void *num2) {
-    return (*(int*)num2 - *(int*)num1);
+    return ((*(int*)num1 < *(int*)num2) - (*(int*)num1 > *(int*)num2));
 }
 
 int main (void) {
@@ -48,10 +48,10 @@ int main (void) {
     //displaying all the data values
     printf("Text file contains: ");
     for (display = 0; display < intCounter; display++) {
-        printf("%d, ", arrInt[display]);
+        printf("%d ", arrInt[display]);
     }
     for (display = 0; display < floatCounter; display++) {
-        printf("%.2lf, ", arrFloat[display]);
+        printf("%.2lf ", arrFloat[display]);
     }
 
     //compact segment to qsort depending on the requirement (int/float, asc/desc)

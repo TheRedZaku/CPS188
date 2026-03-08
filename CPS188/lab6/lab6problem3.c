@@ -35,14 +35,12 @@ int main (void) {
 
     char s[STACK_SIZE];
     int s_top = -1; // stack is empty
-    //int top = 0;
-    int k = 0;
 
-    printf("The current stack is: ");
-    for (int i = 0; i < 5; i++) {
-        push(s, i+65, &s_top, STACK_SIZE);
+    for (int i = 0; i < 5; i++) {//Alphabet is convenient for filling the array
+        push(s, i+65, &s_top, STACK_SIZE); //65 is the letter 'A'
     }
 
+    printf("The current stack is: ");
     for (int k = 0; k < s_top + 1; k++) {
         printf("%c ", s[k]);
     }
@@ -52,13 +50,10 @@ int main (void) {
     }
 
     printf("\nThe current stack is: ");
-
     for (int k = 0; k < s_top + 1; k++) {
         printf("%c ", s[k]);
     }
-    /* complete the program here */
 
     getchar();
     return (0);
 }
-
