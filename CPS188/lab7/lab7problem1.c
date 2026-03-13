@@ -22,15 +22,15 @@ void clean(char before[], char after[]) {
 
 void reverse(char before[], char after[]) {
 
-    if ((int)strlen(before) == 0) {
+    if (strlen(before) == 0) {
 
-        after[(int)strlen(after)] = '\0';//set the last value to the null character, and exit the function
+        after[strlen(after)] = '\0';//set the last value to the null character, and exit the function
 
     } else {
 
-        after[(int)strlen(after)] = before[(int)strlen(before) - 1];//set the current highest index of the new array to the last character in the original array
-        before[(int)strlen(before) - 1] = '\0'; //override the last value of the before array, so that the size decreases
-        after[(int)strlen(after) + 1] = '\0'; //add back a null character in case
+        after[strlen(after)] = before[strlen(before) - 1];//set the current highest index of the new array to the last character in the original array
+        before[strlen(before) - 1] = '\0'; //override the last value of the before array, so that the size decreases
+        after[strlen(after) + 1] = '\0'; //add back a null character in case
         reverse(before, after); //recursively calling the function again
     }
 
@@ -40,7 +40,6 @@ int main(void) {
 
     fflush(stdin);
     char input[100] = "\0", modifiedInput[100] = "\0", reversedInput[100] = "\0";
-    int isPalindrome = 1;//updates to a 0, representing NOT, if not a palindrome
 
     printf(BOLD "Enter a word: ");
 
@@ -57,15 +56,8 @@ int main(void) {
 
     printf("The reverse of the given string is: %s\n", reversedInput);
 
-    for (int index = 0; index < (int)strlen(modifiedInput); index++) {//checks if every single character in both the reverse and regular string are the same
-        if (modifiedInput[index] != reversedInput[index]) {//if even one is different, it will break and update the check to 0
-            isPalindrome = 0;
-            break;
-        }
-    }
-
-    switch (isPalindrome) {
-        case 1:
+    switch (strncmp(modifiedInput, reversedInput, strlen(modifiedInput))) {
+        case 0:
             printf(GREEN "The string: %sis a palindrome.", input);
             break;
         default:
