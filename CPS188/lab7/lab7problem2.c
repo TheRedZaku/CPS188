@@ -5,13 +5,13 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define SIZE 100
-#define SAMPLE 300
+#define SIZE 100 // adjusting SIZE changes the number of data points for each temperature
+#define SAMPLE 300 // adjusting sample determines the maximum number of datapoints across all three temperatures
 
 int main(void) {
 
-    FILE *data;
-    FILE *plot;
+    FILE *data; //file for the data
+    FILE *plot; //file for the plotting
 
     /*constants*/
     const double c = 3e8; //speed of light m/s
@@ -19,14 +19,14 @@ int main(void) {
     const double k = 1.38e-23; //Boltzmann constant J/K
 
     /*values for x*/
-    const double MAX_X = 3e-6;
+    const double MAX_X = 3e-6; //maximum wavelength in micrometres
     const double MIN_X = 0.1e-6;
     const double X_INCREMENT = (2.9e-6)/(SIZE - 1); //making SIZE -1 data points
     double wavelength[SIZE];
     wavelength[0] = MIN_X;
 
     /*values for y*/
-    const double MAX_Y = 5e13;
+    const double MAX_Y = 5e13; // maximum spectral energy density
     const double MIN_Y = 0;
     const double Y_INCREMENT = 1e13;
     
@@ -34,10 +34,13 @@ int main(void) {
     double temperature[3] = {3000, 4000, 5000}; //Kelvin
     double R[SAMPLE];
 
+    //with all these constants, it ensures that the program is almost perfectly modular, so that any sized sample can be used to generate a data set
+
     /*files*/
     data = fopen ("CTextFiles\\blackBodyRadiation.txt", "w"); //because of my ide, I have a folder 'CTextFiles' be sure to adjust depending on what is running the program
     plot = fopen ("CTextFiles\\blackBodyPlot.txt", "w");
 
+    //this section is simply following the formula on the assignment
     fprintf(data, "#Lab #7 Problem #2\n#\n# Temp(K) wavelength(μm) R\n# ----------------------------------------------------------\n");
     for (int i = 0; i < SIZE; i++) {
         R[i] = ((2 * M_PI * pow(c, 2) * h) / pow(wavelength[i], 5)) * (1 / exp((h * c) / (wavelength[i] * k * temperature[0])));
