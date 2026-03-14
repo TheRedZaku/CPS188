@@ -1,18 +1,4 @@
-# This app is a Gnuplot file (dem, plot, gp..) viewer, editor, compiler for your browser.
-# It allows you to create and view Gnuplot file directly on your browser and generate a SVG image.
-# This app only works locally without going through the server. It allows you to view/compile Gnuplot file instantly, real-time.
-# You can choose a Gnuplot file to edit from your computer or from Google Drive.
-# You can easily view or edit your Gnuplot file including plot, data, functions.
-
-# How to change output SVG width/height size ex) set terminal svg enhanced size 800,600
-# Please do not set "output" filename, The default is "output/out.svg". Changing this value may result in an error.
-# Use the "Options" menu above to add data and image files.
-
-#set terminal svg enhanced size 600,480
-
-label1 = "T = 3000K"
-label2 = "T = 4000K"
-label3 = "T = 5000K"
+set terminal svg enhanced size 600,480
 
 set title 'Black Body Radiation'
 set xlabel 'Wavelength (μm)'
@@ -21,16 +7,13 @@ set ylabel 'Spectral Energy Density (W/m³)'
 set key right center top
 
 set xrange [0 : 0.000003]
-set xtics 0.0000005
+set xtics ("0.5" 0.0000005, "1" 0.000001, "1.5" 0.0000015, "2" 0.000002, "2.5" 0.0000025, "3" 0.000003)
 
 set yrange [0 : 50000000000000]
 set ytics 10000000000000
 
 set grid
 
-plot "blackBodyRadiation.txt" with lp using 2:3
-replot "blackBodyRadiation.txt" with lp using 5:6
-replot "blackBodyRadiation.txt" with lp using 8:9
-
-
-
+plot "blackBodyRadiation.txt" using 1:2 title "3000K" with lp lw 3 lc "#AD2105" pt 0, \
+"blackBodyRadiation.txt" using 1:3 title "4000K" with l dt 4 lw 3 lc "#E84120" pt 0, \
+"blackBodyRadiation.txt" using 1:4 title "5000K" with l dt 3 lw 3 lc "#F5A190" pt 0
