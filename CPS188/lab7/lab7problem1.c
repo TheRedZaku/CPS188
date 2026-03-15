@@ -13,7 +13,7 @@ void clean(char before[], char after[]) {
     int modifiedIndex = 0;
 
     for (int i = 0; i < strlen(before); i++) {//runs through the array length and just skips anything that isn't a lowercase alpha character
-        if (isalpha(before[i])) {
+        if (isalnum(before[i])) {
             after[modifiedIndex] = tolower(before[i]);
             modifiedIndex++;
         }
