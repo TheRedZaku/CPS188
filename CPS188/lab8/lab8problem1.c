@@ -17,17 +17,17 @@ int main(void) {
     double temperature[ROWS][COLUMNS];
     double average[6], highest = 0, compare = 0;
     int year = 0;
-    in = fopen("ctextfiles\\ontario.csv", "r");
+    in = fopen("CTextFiles\\ontario.csv", "r");
 
-    char scanner[size];
+    char scanner[SIZE];
 
 
-    fgets(scanner, size, in);
+    fgets(scanner, SIZE, in);
 
     
     for (int i = 0; i < rows; i++) {
 
-        fgets(scanner, size, in);
+        fgets(scanner, SIZE, in);
         token = strtok(scanner, delimiter); //takes the rest of the string, ignoring the row header
         
         for (int j = 0; j < columns; j++) {
