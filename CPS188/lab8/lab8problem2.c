@@ -38,7 +38,7 @@ int main(void) {
 
     for (int i = 0; i < ADDRESSES; i++) {
 
-        fgets(scanner, SIZE, in);
+        //fgets(scanner, SIZE, in);
 
         if (fgets(scanner, SIZE, in) != NULL) {
 
@@ -69,12 +69,22 @@ int main(void) {
     
     }
 
-    for (int j = 0; j < data; j++) { //fix this
-            if (localnet(&internet[j], &internet[data-j-1]) == 1) {
-                printf("\n%s is on the same locality as %s", internet[j].nickname, internet[data-j-1].nickname);
-            } else {
-                printf("\n%s is not on the same locality as %s", internet[j].nickname, internet[data-j-1].nickname);
+    for (int j = 0; j < data; j++) {//loops through the total number of addresses
+
+        for(int k = j+1; k < data; k++) {//it is starting at j+1, so that no redundant loops are completed. ex. if j is 1, then the inner loop will check from 2 to the end, instead of wasting time checking the identical loop
+
+            if (localnet(&internet[j], &internet[k]) == 1) {
+            printf("Servers %s and %s are on the same local network.\n", internet[j].nickname, internet[k].nickname);
             }
+
+        }
+
+    }
+
+    //complete list of all the addresses read into the program, with their respective nicknames
+    printf("IPv4 Address ---- Nickname\n");
+    for (int i = 0; i < data; i++) {
+        printf("%03d.%03d.%03d.%-03d %s\n", internet[i].aa, internet[i].bb, internet[i].cc, internet[i].dd, internet[i].nickname);
     }
 
     return 0;

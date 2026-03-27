@@ -4,7 +4,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-
 #define SIZE 1000
 #define COLUMNS 30 //30 years, the 1 is from the row headers
 #define ROWS 365 //first row is the header, which can be ignored when scanning
@@ -21,16 +20,14 @@ int main(void) {
 
     char scanner[SIZE];
 
-
     fgets(scanner, SIZE, in);
 
-    
-    for (int i = 0; i < rows; i++) {
+    for (int i = 0; i < ROWS; i++) {
 
         fgets(scanner, SIZE, in);
-        token = strtok(scanner, delimiter); //takes the rest of the string, ignoring the row header
+        token = strtok(scanner, DELIMITER); //takes the rest of the string, ignoring the row header
         
-        for (int j = 0; j < columns; j++) {
+        for (int j = 0; j < COLUMNS; j++) {
 
             token = strtok(NULL, DELIMITER); //splits the string to the next token
 
