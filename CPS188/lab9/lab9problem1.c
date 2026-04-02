@@ -78,31 +78,32 @@ int main(void) {
     fclose(in);
 
     fprintf(gnuplot , "set terminal svg enhanced size 600,480\n"
-            "set title \'Average Water Temperature over the years\'\n"
-            "set xlabel \'Years\'\n"
+            "\nset title \'Average Water Temperature in Lake Ontario\'\n"
+            "\nset xlabel \'Years\'\n"
             "set ylabel \'Temperature (°C)\'\n"
             "set key right center top\n"
-            "\nset xrange [1995 : 2025]\n"
+            "\nset xrange [1994 : 2026]\n"
             "\nset yrange [0 : 14]\n"
-            "set grid\n"
-            "plot \"lab9problem1.txt\" using 1:2 title \"3000K\" with lp lw 3 lc \"#330F80\" pt 0\n");
+            "\nset grid\n"
+            "set boxwidth 1\n"
+            "set style fill pattern 1\n"
+            "plot \"lab9problem1.txt\" using 1:2 title \"3000K\" with lp lw 3 lc \"#ABABFF\" pt 0\n");
 
     fclose(gnuplot);
 
     swimTempAvg = swimTemp[0] + swimTemp[1] + swimTemp[2] + swimTemp[3] + swimTemp[4];
     
-    printf("\nYear           Average Water Temperature (Degrees Celsius)");
+    printf("\nYear    Average Water Temperature (Degrees Celsius)");
 
     for (int i = 0; i < COLUMNS; i++) { 
         average[i] /= ROWS; //determines the average by dividing by the number of days (i.e. ROWS)
-        printf("\n%d: %.2lf.", i + 1995, average[i]); //printing each average
+        printf("\n%d                        %.2lf", i + 1995, average[i]); //printing each average
         fprintf(out, "%d %.2lf\n", i + 1995, average[i]);
     }
 
     fclose(out);
 
-    printf("\nThe year with the highest temperature on day 185 was %d, with a recorded temperature of %.2lf."
-    "\nNumber of days where swimming is possible:\n2021: %d\n2022: %d\n2023: %d\n2024: %d\n2025: %d", year + 1995, highest, swimTemp[0], swimTemp[1], swimTemp[2], swimTemp[3], swimTemp[4]); 
+    printf("\nNumber of days where swimming is possible:\n2021: %d\n2022: %d\n2023: %d\n2024: %d\n2025: %d", swimTemp[0], swimTemp[1], swimTemp[2], swimTemp[3], swimTemp[4]); 
 
     return 0;
 }
