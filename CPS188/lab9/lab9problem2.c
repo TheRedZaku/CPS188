@@ -4,7 +4,7 @@
 #include "mylibrary.h"
 #include <string.h>
 #include <stdlib.h>
-
+ 
 #define SIZE 10 //size of the array
 #define SCANNER_SIZE 1000 //scanner buffer space
 #define DELIMITER " " //delimit at spaces -> preferable to use fgets rather than fscanf
