@@ -8,16 +8,18 @@
 #define SIZE 10 //size of the array
 #define SCANNER_SIZE 1000 //scanner buffer space
 #define DELIMITER " " //delimit at spaces -> preferable to use fgets rather than fscanf
+#define RESULT_SIZE 4
 
 int main(void) {
 
     FILE *in; 
     FILE *out;
     double num[SIZE][SIZE];
+    double results[RESULT_SIZE];
     char *token;
 
     in = fopen("CTextFiles\\L9_real.txt", "r"); //the file of data
-    out = fopen("CTextFiles\\results.bin", "w"); //the output file (the results)
+    out = fopen("CTextFiles\\results.bin", "wb"); //the output file (the results)
 
     char scanner[SCANNER_SIZE];
 
@@ -34,22 +36,28 @@ int main(void) {
 
     fclose(in);
 
-    //print out the results into the output file "results.bin"
-    fprintf(out, "The sum of the diagonal array elements is %.2lf.\n"
-                "The sum of all the array elements is %.2lf.\n"
-                "The average of the last array elements is  %.2lf.\n"
-                "The sum of the four corner array elements is %.2lf."
-                , sumDiagonal(SIZE, num), sumAll(SIZE, num), avgLast(SIZE, num), sumCorners(SIZE, num));
+    //printing of results happens in the function call
+    //the following calls all the functions and writes, meaning they don't have to be assigned to values
+    sumDiagonal(SIZE, num, out);
+    sumAll(SIZE, num, out);
+    avgLast(SIZE, num, out);
+    sumCorners(SIZE, num, out);
 
-    fclose(out);
-
+    fclose(out);//close the file
+    out = fopen("CTextFiles\\results.bin", "rb"); //reopen in binary reading mode
+    fread(results, sizeof(double), 4, out); //read the data into a new array
+    
     //print out the results to the console
     printf("The sum of the diagonal array elements is %.2lf.\n"
                 "The sum of all the array elements is %.2lf.\n"
                 "The average of the last array elements is  %.2lf.\n"
                 "The sum of the four corner array elements is %.2lf."
-                , sumDiagonal(SIZE, num), sumAll(SIZE, num), avgLast(SIZE, num), sumCorners(SIZE, num));
-
+                , results[0], results[1], results[2], results[3]);
+    
+    fclose(out);
+    
+    fflush(stdin);
+    getchar();
     return 0;
 
 }

@@ -1,12 +1,14 @@
 #ifndef MYLIB_H
 #define MYLIB_H
 
-double sumDiagonal(int SIZE, double num[][SIZE]);
+#include <stdio.h> //included so that "FILE" is defined
 
-double sumAll(int SIZE, double num[][SIZE]);
+void sumDiagonal(int SIZE, double num[][SIZE], FILE *fptr);
 
-double avgLast(int SIZE, double num[][SIZE]);
+void sumAll(int SIZE, double num[][SIZE], FILE *fptr);
 
-double sumCorners(int SIZE, double num[][SIZE]);
+void avgLast(int SIZE, double num[][SIZE], FILE *fptr);
+
+void sumCorners(int SIZE, double num[][SIZE], FILE *fptr);
 
 #endif

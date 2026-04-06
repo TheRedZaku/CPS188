@@ -1,18 +1,18 @@
 #include "mylibrary.h"
 #include <stdio.h>
 
-double sumDiagonal(int SIZE, double num[][SIZE]) {
+void sumDiagonal(int SIZE, double num[][SIZE], FILE *fptr) {
 
     double sum = 0;
     for (int i = 0; i < SIZE; i++) {
         sum += num[i][i];
     }
 
-    return sum;
+    fwrite(&sum, sizeof(double), 1, fptr);
 
 }
 
-double sumAll(int SIZE, double num[][SIZE]) {
+void sumAll(int SIZE, double num[][SIZE], FILE *fptr) {
     
     double sum = 0;
     for (int i = 0; i < SIZE; i++) {
@@ -21,11 +21,11 @@ double sumAll(int SIZE, double num[][SIZE]) {
         }
     }
 
-    return sum;
+    fwrite(&sum, sizeof(double), 1, fptr);
 
 }
 
-double avgLast(int SIZE, double num[][SIZE] ) {
+void avgLast(int SIZE, double num[][SIZE], FILE *fptr) {
 
     double avg = 0;
     for (int i = 0; i < SIZE; i++) {
@@ -33,15 +33,15 @@ double avgLast(int SIZE, double num[][SIZE] ) {
     }
     avg = avg/SIZE;
 
-    return avg;
+    fwrite(&avg, sizeof(double), 1, fptr);
 
 }
 
-double sumCorners(int SIZE, double num[][SIZE]) {
+void sumCorners(int SIZE, double num[][SIZE], FILE *fptr) {
 
     double sum = 0;
     sum = num[0][0] + num[0][SIZE - 1] + num[SIZE - 1][0] + num[SIZE - 1][SIZE - 1];
 
-    return sum;
+    fwrite(&sum, sizeof(double), 1, fptr);
 
 }
